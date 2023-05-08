@@ -1,4 +1,4 @@
-import { rpsFunct,  rpslsFunct } from "./lib/rpsls.js"
+import { rps,  rpsls } from "./lib/rpsls.js";
 import express from "express";
 import minimist from "minimist";
 
@@ -6,55 +6,54 @@ const app = express();
 app.use(express.json());
 
 const args = minimist(process.argv.slice(2));
-console.log(args);
 const port = (args.port || 5000);
 
-// 3. READ (HTTP method GET) at root endpoint /app/
-app.get("/app/", (req, res, next) => {
 
-    res.status(200).json({"message":"200 OK"});
+// 3. READ (HTTP method GET) at root endpoint /app/
+app.get('/app/', (req, res, next) => {
+    res.status(200).send('200 OK');
 	
 });
 
 // 4. rps single
-app.get("/app/rpsFunct/", (req, res) => {
+app.get("/app/rps/", (req, res) => {
     
-    const game = rpsFunct();
+    const game = rps();
     res.status(200).json({game});
 });
 
 // 5. rpsls single
-app.get("/app/rpslsFunct/", (req, res) => {
+app.get("/app/rpsls/", (req, res) => {
     
-    const game = rpslsFunct();
+    const game = rpsls();
     res.status(200).json({game});
 });
 
 // 6. rps opponent
-app.get('/app/rpsFunct/play/', (req, res, next) => {
+app.get('/app/rps/play/', (req, res, next) => {
     
-    const game = rpsFunct(req.params.playerChoice)
+    const game = rps(req.params.playerChoice)
     res.status(200).json({game})
 })
 
 // 7. rpsls opponent
-app.get('/app/rpslsFunct/play/', (req, res, next) => {
+app.get('/app/rpsls/play/', (req, res, next) => {
     
-    const game = rpslsFunct(req.params.playerChoice)
+    const game = rpsls(req.params.playerChoice)
     res.status(200).json({game})
 })
 
 // 8. rps single
-app.get('/app/rpsFunct/play/:shot/', (req, res, next) => {
+app.get('/app/rps/play/:playerChoice/', (req, res, next) => {
   
-    const game = rpsFunct(req.body.shot);
+    const game = rps(req.body.shot);
     res.status(200).json({game})
 })
 
 // 9. rpsls
-app.get('/app/rpslsFunct/play/:shot', (req, res, next) => {
+app.get('/app/rpsls/play/:playerChoice', (req, res, next) => {
     
-    const game = rpsFunct(req.body.shot);
+    const game = rps(req.body.shot);
     res.status(200).json({game})
 })
 
@@ -63,4 +62,9 @@ app.use(function(req, res){
     const statusCode = 404
     const statusMessage = 'NOT FOUND'
     res.status(statusCode).end(statusCode+ ' ' +statusMessage)
+});
+
+// Start server
+const server = app.listen(port, () => {
+    console.log("Server running on port %PORT%".replace("%PORT%",port))
 });
