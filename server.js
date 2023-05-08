@@ -1,17 +1,11 @@
 import { rpsFunct,  rpslsFunct } from "./lib/rpsls.js"
 import express from "express";
+import minimist from "minimist";
 
 const app = express();
 app.use(express.json());
 
-// Require fs module
-var fs = require('fs').promises;
-
-// Require minimist module (make sure you install this one via npm).
-const minimist = require('minimist');
-
 // Use minimist to process one argument `--port=` on the command line after `node server.js`.
-
 // Define a const `port` using the argument from the command line. 
 // Make this const default to port 5000 if there is no argument given for `--port`.
 
