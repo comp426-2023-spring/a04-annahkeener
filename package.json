@@ -1,0 +1,19 @@
+{
+  "name": "rps-server",
+  "version": "1.0.0",
+  "description": "rps server",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js --port=5555"
+  },
+  "repository": {
+    "type": "module",
+    "url": "git+https://github.com/comp426-2023-spring/a04-annahkeener.git"
+  },
+  "author": "annahkeener",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/comp426-2023-spring/a04-annahkeener/issues"
+  },
+  "homepage": "https://github.com/comp426-2023-spring/a04-annahkeener#readme"
+}
