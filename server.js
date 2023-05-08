@@ -37,25 +37,30 @@ app.get('/app/rps/play/', (req, res, next) => {
 
 // 7. rpsls opponent
 app.get('/app/rpsls/play/', (req, res, next) => {
-    
     res.status(200).send(rpsls(req.query.shot));
 })
 
-// 8. rps single
-app.get('/app/rps/play/:playerChoice/', (req, res, next) => {
-  
-    const game = rps(req.body.shot);
-    res.status(200).json({game})
+// 8. rps JSON
+app.post('/app/rps/play/', (req, res, next) => {
+    res.status(200).json(rps(req.body.shot));
 })
 
-// 9. rpsls
-app.get('/app/rpsls/play/:playerChoice', (req, res, next) => {
-    
-    const game = rps(req.body.shot);
-    res.status(200).json({game})
+// 9. rpsls JSON
+app.post('/app/rpsls/play/', (req, res, next) => {
+    res.status(200).json(rpsls(req.body.shot));
 })
 
-// 10. Default API endpoint that returns 404 Not found for any endpoints that are not defined.
+// 10. rps single param endpoint 
+app.get('/app/rps/play/:shot(rock|paper|scissors)/', (req, res, next) => {
+    res.status(200).json(rps(req.params.shot));
+})
+
+// 11. rpsls single param endpoint 
+app.get('/app/rpsls/play/:shot(rock|paper|scissors|lizard|spock)/', (req, res, next) => {
+    res.status(200).json(rps(req.params.shot));
+})
+
+// 12. Default API endpoint that returns 404 Not found for any endpoints that are not defined.
 app.use(function(req, res){
     const statusCode = 404
     const statusMessage = 'NOT FOUND'
