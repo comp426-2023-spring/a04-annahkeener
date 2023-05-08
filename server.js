@@ -1,12 +1,16 @@
 import { rps,  rpsls } from "./lib/rpsls.js";
 import express from "express";
 import minimist from "minimist";
+import bodyParser from "express";
 
 const app = express();
 app.use(express.json());
 
 const args = minimist(process.argv.slice(2));
 const port = (args.port || 5000);
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 // 3. READ (HTTP method GET) at root endpoint /app/
@@ -17,23 +21,18 @@ app.get('/app/', (req, res, next) => {
 
 // 4. rps single
 app.get("/app/rps/", (req, res) => {
-    
-    const game = rps();
-    res.status(200).json({game});
+    res.status(200).json(rps());
 });
 
 // 5. rpsls single
 app.get("/app/rpsls/", (req, res) => {
-    
-    const game = rpsls();
-    res.status(200).json({game});
+    res.status(200).json(rpsls());
 });
+
 
 // 6. rps opponent
 app.get('/app/rps/play/', (req, res, next) => {
-    
-    const game = rps(req.params.playerChoice)
-    res.status(200).json({game})
+    res.status(200).send(rps(req.query.shot))
 })
 
 // 7. rpsls opponent
@@ -67,4 +66,11 @@ app.use(function(req, res){
 // Start server
 const server = app.listen(port, () => {
     console.log("Server running on port %PORT%".replace("%PORT%",port))
+});
+
+// Tell STDOUT that the server is stopped
+process.on('SIGINT', () => {
+    server.close(() => {
+		console.log('\nApp stopped.');
+	});
 });
