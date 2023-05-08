@@ -1,5 +1,7 @@
 import { rpsFunct,  rpslsFunct } from "./lib/rpsls.js"
-const express = require('express');
+import express from "express";
+import minimist from "minimist";
+
 const app = express();
 app.use(express.json());
 
