@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "rps server",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "node server.js --port=5555"
   },
   "repository": {
-    "type": "module",
+    "type": "git",
     "url": "git+https://github.com/comp426-2023-spring/a04-annahkeener.git"
   },
   "author": "annahkeener",
