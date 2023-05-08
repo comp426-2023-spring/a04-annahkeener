@@ -32,14 +32,13 @@ app.get("/app/rpsls/", (req, res) => {
 
 // 6. rps opponent
 app.get('/app/rps/play/', (req, res, next) => {
-    res.status(200).send(rps(req.query.shot))
+    res.status(200).send(rps(req.query.shot));
 })
 
 // 7. rpsls opponent
 app.get('/app/rpsls/play/', (req, res, next) => {
     
-    const game = rpsls(req.params.playerChoice)
-    res.status(200).json({game})
+    res.status(200).send(rpsls(req.query.shot));
 })
 
 // 8. rps single
