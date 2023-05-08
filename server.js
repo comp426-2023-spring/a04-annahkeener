@@ -1,4 +1,4 @@
-import { rpsFunct,  rpslsFunct } from "./lib/a03-annahkeener/lib/rpsls.js"
+import { rpsFunct,  rpslsFunct } from "./lib/rpsls.js"
 const express = require('express');
 const app = express();
 app.use(express.json());
