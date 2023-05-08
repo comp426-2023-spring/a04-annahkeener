@@ -15,44 +15,44 @@ const port = (args.port || 5000);
 
 // 3. READ (HTTP method GET) at root endpoint /app/
 app.get("/app/", (req, res, next) => {
-    res.json({"message":"Your API works! (200)"});
+    res.json({"message":"Your API works! :))) (200)"});
 	res.status(200);
 });
 
 // 4. rps single
 app.get("/app/rpsFunct/", (req, res) => {
     const shot = rpsFunct();
-    res.status(200).json(shot);
+    res.status(200).json({shot});
 });
 
 // 5. rpsls single
 app.get("/app/rpslsFunct/", (req, res) => {
     const shot = rpslsFunct();
-    res.status(200).json(shot);
+    res.status(200).json({shot});
 });
 
 // 6. rps opponent
 app.get('/app/rpsFunct/play/', (req, res, next) => {
-    const game = rpsFunct(req.params.playerChoice)
-    res.status(200).json(game)
+    const shot = rpsFunct(req.params.playerChoice)
+    res.status(200).json({shot})
 })
 
 // 7. rpsls opponent
 app.get('/app/rpslsFunct/play/', (req, res, next) => {
     const game = rpslsFunct(req.params.playerChoice)
-    res.status(200).json(game)
+    res.status(200).json({shot})
 })
 
 // 8. rps single
 app.get('/app/rpslsFunct/play/(rock|paper|scissors)/', (req, res, next) => {
     const shot = rpsFunct();
-    res.status(200).json(shot)
+    res.status(200).json({shot})
 })
 
 // 9. rpsls
 app.get('/app/rpslsFunct/play/(rock|paper|scissors|lizard|spock)/', (req, res, next) => {
     const shot = rpsFunct();
-    res.status(200).json(shot)
+    res.status(200).json({shot})
 })
 
 // 10. Default API endpoint that returns 404 Not found for any endpoints that are not defined.
