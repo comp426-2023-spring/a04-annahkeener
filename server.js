@@ -4,9 +4,6 @@ import express from "express";
 const app = express();
 app.use(express.json());
 
-// Require http module
-var http = require('http');
-
 // Require fs module
 var fs = require('fs').promises;
 
